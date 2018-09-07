@@ -1,0 +1,39 @@
+---
+- name: Add packagecloud apt key
+  apt_key:
+    url: "https://packagecloud.io/gpg.key"
+    state: present
+
+- name: Add packagecloud repository
+  apt_repository:
+    repo: "deb http://packages.blackfire.io/debian any main"
+    state: present
+  register: packagecloud_repos
+
+- name: Update apt caches after repo is added
+  apt: update_cache=yes
+  when: packagecloud_repos.changed
+
+- name: Install Blackfire CLI component
+  package:
+    name: "blackfire-php"
+    state: present
+  when: blackfire_install_cli == true
+
+- name: "Note"
+  debug:
+    msg: "Run blackfire config to configure blackfire CLI tool"
+  when: blackfire_install_cli == true
+
+- name: Ensure Blackfire packages are installed.
+  package:
+    name: "blackfire-agent"
+    state: present
+  notify:
+    - restart php module service
+  when: blackfire_install_agent == true
+
+- name: "Note"
+  debug:
+    msg: "Run sudo blackfire-agent -register to configure blackfire agent"
+  when: blackfire_install_agent == true
