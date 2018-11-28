@@ -1,5 +1,2 @@
 ---
-- src: https://github.com/iroquoisorg/ansible-role-php7.git
-  name: php7
-  version: master
-  scm: git
+- src: iroquoisorg.php7
