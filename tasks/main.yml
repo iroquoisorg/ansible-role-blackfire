@@ -13,6 +13,8 @@
 - name: Update apt caches after repo is added
   apt: update_cache=yes
   when: packagecloud_repos.changed
+  tags:
+    - skip_ansible_lint
 
 - name: Install Blackfire CLI component
   package:

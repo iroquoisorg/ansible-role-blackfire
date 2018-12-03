@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  remote_user: root
-  roles:
-    - iroquoisorg.php7
-    - ansible-role-blackfire

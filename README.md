@@ -18,3 +18,7 @@ blackfire_install_agent: false
 blackfire_php_module_service: 'change-me' # apache2 | httpd | php7.2-fpm
 
 ```
+
+# Development
+
+Please check [development guide](DEVELOPMENT.md) for details about developing and testing this role.
